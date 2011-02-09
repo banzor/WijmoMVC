@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Sales</h2>
+<div class="ui-helper-clearfix">
+    <div class="saleschart" style="float: left;">
+    </div>
+    <div class="productchart" style="float: left;">
+    </div>
+</div>
+<table class="productsalesgrid">
+    <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Sales
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <script id="productsalesTmpl" type="text/x-jquery-tmpl">
+            <tr>
+                <td>${CategoryName}
+                </td>
+                <td>${ProductName}
+                </td>
+                <td>${ProductSales}
+                </td>
+            </tr>
+        </script>
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Sales/SalesByCategoryData",
+            dataType: "json",
+            success: function (data) {
+                var series = [];
+                for (var i = 0; i < data.length; i++) {
+                    var slice = {
+                        label: data[i].CategoryName,
+                        legendEntry: true,
+                        data: data[i].CategorySales
+                    };
+                    series.push(slice);
+                }
+                $(".saleschart").wijpiechart({
+                    hint: {
+                        content: function () {
+                            return this.data.label + " : " + $.format(this.value / this.total, "p2");
+                        }
+                    },
+                    seriesList: series,
+                    width: 400,
+                    height: 300
+                });
+            }
+        });
+
+        $.ajax({
+            url: "/Sales/TopProductSalesData",
+            dataType: "json",
+            success: function (data) {
+                var xseries = [];
+                var yseries = [];
+                for (var i = 0; i < 5; i++) {
+                    xseries.push(data[i].ProductName);
+                    yseries.push(data[i].ProductSales);
+
+                }
+                $(".productchart").wijbarchart({
+                    axis: {
+                        x: {
+                            labels: {
+                                textAlign: "near",
+                                style: {
+                                    rotation: -45
+                                }
+                            }
+                        }
+                    },
+                    hint: {
+                        content: function () {
+                            return this.x + ': ' + this.y + '';
+                        }
+                    },
+                    seriesList: [{
+                        label: "Sales",
+                        legendEntry: false,
+                        data: {
+                            x: xseries,
+                            y: yseries
+                        }
+                    }],
+                    horizontal: false,
+                    width: 400,
+                    height: 300
+                });
+            }
+        });
+
+        $.ajax({
+            url: "/Sales/ProductSalesData",
+            dataType: "json",
+            success: function (data) {
+                $("#productsalesTmpl").tmpl(data).appendTo(".productsalesgrid tbody");
+                $(".productsalesgrid").wijgrid({
+                    allowSorting: true,
+                    columns: [
+                    {
+                        sortDirection: "ascending",
+                        aggregate: "count",
+                        groupInfo: {
+                            position: "header",
+                            outlineMode: "startCollapsed",
+                            headerText: "{1}:{0}, Count={2}"
+                        }
+                    },
+                  {},
+                    { dataType: "currency", aggregate: "sum" }
+                ]
+                });
+            }
+        });
+    });
+</script>

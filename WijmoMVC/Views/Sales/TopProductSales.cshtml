@@ -1,0 +1,56 @@
+﻿@model IList<WijmoMVC.Models.Product_Sales_for_1997>
+@{
+    ViewBag.Title = "Top Selling Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Top Selling Products</h2>
+<table class="salesgrid">
+    <caption>
+       Top 10 Products</caption>
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                Sales
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <th>
+                    @s.ProductName
+                </th>
+                <td>
+                    @s.ProductSales
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="saleschart"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var salesx = [];
+        var salesy = [];
+        $(".salesgrid tbody tr").each(function (index) {
+            salesx.push($(this).find("th").text());
+            salesy.push(parseFloat($(this).find("td").text()));
+        });
+        $(".saleschart").wijbarchart({
+            seriesList: [
+                {
+                    label: "Sales",
+                    legendEntry: true,
+                    data: { x: salesx, y: salesy }
+                }
+            ],
+            width: 600,
+            height: 400
+        });
+        $(".salesgrid").hide();
+    });
+</script>

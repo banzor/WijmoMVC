@@ -1,0 +1,30 @@
+﻿@model IList<WijmoMVC.Models.Categories>
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Product Categories</h2>
+<ul class="categorylist">
+    @foreach (var c in Model)
+    { 
+        <li><a href="#">@c.CategoryName</a>
+            @if (c.Products != null && c.Products.Count() > 0)
+            { 
+                <ul>
+                    @foreach (var p in c.Products)
+                    { 
+                        <li><a href="#">@p.ProductName</a></li>
+    
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".categorylist").wijtree();
+
+    });
+</script>

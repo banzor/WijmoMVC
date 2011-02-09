@@ -1,0 +1,66 @@
+﻿@model IList<WijmoMVC.Models.Category_Sales_for_1997>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Sales</h2>
+<table class="salesgrid">
+    <caption>
+        Sales by Category</caption>
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                Sales
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <th>
+                    @s.CategoryName
+                </th>
+                <td>
+                    @decimal.Round(s.CategorySales.Value)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="saleschart"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var salesGridData = [];
+        $(".salesgrid tbody tr").each(function (index) {
+            var itm = {
+                label: $(this).find("th").text(),
+                legendEntry: true,
+                data: parseFloat($(this).find("td").text()),
+                offset: 0
+            };
+            salesGridData.push(itm);
+        });
+        $(".saleschart").wijpiechart({
+            legend: {
+                visible:false
+            },
+            hint: {
+                content: function () {
+                    return $.format(this.value / this.total, "p2");
+                }
+            },
+            header: {
+                text: $.trim($(".salesgrid caption").text())
+            },
+            seriesList: salesGridData,
+            width: 600,
+            height: 400
+        });
+        $(".salesgrid").hide();
+
+    });
+</script>

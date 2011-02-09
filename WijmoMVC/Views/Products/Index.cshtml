@@ -1,0 +1,50 @@
+﻿@model IList<WijmoMVC.Models.Products>
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Products</h2>
+<table class="productgrid">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.ProductName
+                </td>
+                <td>@p.UnitPrice
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //        $(".productgrid").wijgrid({
+        //            allowSorting: true,
+        //            allowPaging: true,
+        //            columns: [
+        //            {},
+        //            { dataType: "currency" }
+        //            ]
+        //        });
+        $(".productgrid").wijgrid({
+            allowSorting: true,
+            allowPaging: true,
+            columns: [
+                {},
+                { dataType: "currency" }
+            ]
+        });
+    });
+</script>

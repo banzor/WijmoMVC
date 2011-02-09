@@ -1,0 +1,56 @@
+﻿@model IList<WijmoMVC.Models.Product_Sales_for_1997>
+@{
+    ViewBag.Title = "Product Sales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Product Sales</h2>
+<table class="productsalesgrid">
+    <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Sales
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.CategoryName
+                </td>
+                <td>@p.ProductName
+                </td>
+                <td>@p.ProductSales
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".productsalesgrid").wijgrid({
+            allowSorting: true,
+            columns: [
+                    {
+                        sortDirection: "ascending",
+                        aggregate: "count",
+                        groupInfo: {
+                            position: "header",
+                            outlineMode: "startCollapsed",
+                            headerText: "{0}, Count={2}"
+                        }
+                    },
+                    {},
+                    { dataType: "currency", aggregate: "sum" }
+                ]
+            });
+
+    });
+</script>

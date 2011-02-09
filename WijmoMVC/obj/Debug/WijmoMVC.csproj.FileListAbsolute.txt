@@ -1,0 +1,15 @@
+C:\WebDev\MVC3_RazorSyntax\MVC3_RazorSyntax\bin\MVC3_RazorSyntax.dll
+C:\WebDev\MVC3_RazorSyntax\MVC3_RazorSyntax\bin\MVC3_RazorSyntax.pdb
+C:\WebDev\MVC3_RazorSyntax\MVC3_RazorSyntax\obj\Debug\ResolveAssemblyReference.cache
+C:\WebDev\MVC3_RazorSyntax\MVC3_RazorSyntax\obj\Debug\MVC3_RazorSyntax.dll
+C:\WebDev\MVC3_RazorSyntax\MVC3_RazorSyntax\obj\Debug\MVC3_RazorSyntax.pdb
+C:\Users\chrisb.COMPONENTONE\Desktop\PuttingTheVInMVC\WijmoMVC\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\chrisb.COMPONENTONE\Desktop\PuttingTheVInMVC\WijmoMVC\bin\WijmoMVC.dll
+C:\Users\chrisb.COMPONENTONE\Desktop\PuttingTheVInMVC\WijmoMVC\bin\WijmoMVC.pdb
+C:\Users\chrisb.COMPONENTONE\Desktop\PuttingTheVInMVC\WijmoMVC\obj\Debug\WijmoMVC.dll
+C:\Users\chrisb.COMPONENTONE\Desktop\PuttingTheVInMVC\WijmoMVC\obj\Debug\WijmoMVC.pdb
+C:\Work\GitHub\WijmoMVC\WijmoMVC\bin\WijmoMVC.dll
+C:\Work\GitHub\WijmoMVC\WijmoMVC\bin\WijmoMVC.pdb
+C:\Work\GitHub\WijmoMVC\WijmoMVC\obj\Debug\ResolveAssemblyReference.cache
+C:\Work\GitHub\WijmoMVC\WijmoMVC\obj\Debug\WijmoMVC.dll
+C:\Work\GitHub\WijmoMVC\WijmoMVC\obj\Debug\WijmoMVC.pdb
