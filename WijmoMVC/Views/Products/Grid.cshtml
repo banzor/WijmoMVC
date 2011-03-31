@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Products Grid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Products</h2>
+<table class="productgrid">
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var editArray = [];
+        $(".productgrid").wijgrid({
+            dataKey: "ProductID",
+            allowPaging: true,
+            allowSorting: true,
+            pageSize: 10,
+            columns: [
+                    { dataType: "number", dataFormatString: "n:0", width:"80px" },
+                    {},
+                    { dataType: "currency", width: "120px" }
+                ],
+            data: new wijdatasource({
+                dynamic: true,
+                proxy: new wijhttpproxy({
+                    url: "../../Products/GetRows",
+                    type: "POST",
+                    dataType: "json"
+                }),
+                reader: {
+                    read: function (datasource) {
+                        var count = datasource.data.TotalRowCount;
+                        datasource.data = datasource.data.Items;
+                        datasource.data.totalRows = count;
+                        new wijarrayreader([
+                                { name: "ProductID", mapping: "ProductID" },
+                                { name: "ProductName", mapping: "ProductName" },
+                                { name: "UnitPrice", mapping: "UnitPrice" }
+                            ]).read(datasource);
+                    }
+                }
+            })
+        });
+    });
+</script>

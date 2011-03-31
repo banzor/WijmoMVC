@@ -33,8 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -73,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyNorthWindEDM.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +134,7 @@
     </EntityDeploy>
     <Content Include="Views\Products\Categories.cshtml" />
     <Content Include="Views\Sales\ProductSales.cshtml" />
+    <Content Include="Views\Products\Grid.cshtml" />
     <None Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Sales\Index.cshtml" />
     <Content Include="Views\Sales\SalesByCategory.cshtml" />
